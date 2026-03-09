@@ -45,17 +45,19 @@ export const Home = () => {
               return (
                 <div
                   key={index}
-                  // NOTE: CHANGE THIS KEY TO UID IF POSSIBLE
+                  // NOTE: CHANGE THIS KEY TO ID OR UID IF POSSIBLE
                   className="col"
                   onClick={() => addFavorite(person.properties.name)}
                 >
-                  {/* <img
+                  <img
                     src={
-                      "https://upload.wikimedia.org/wikipedia/commons/c/ce/Star_wars2.svg"
+                      "https://github.com/breatheco-de/swapi-images/blob/master/public/images/people/" +
+                      (index + 1) +
+                      ".jpg?raw=true"
                     }
                     alt=""
                     className="profile-image"
-                  /> */}
+                  />
                   <h3>{person.properties.name}</h3>
                   <ul>
                     <li className="text-start">
