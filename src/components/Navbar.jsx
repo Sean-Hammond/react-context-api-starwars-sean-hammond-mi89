@@ -43,7 +43,7 @@ export const Navbar = () => {
           <div
             className="modal fade"
             id="favoritesModal"
-            tabindex="-1"
+            tabIndex="-1"
             aria-labelledby="favoritesModalLabel"
             aria-hidden="true"
           >
@@ -70,7 +70,7 @@ export const Navbar = () => {
                           <button className="invisibleButton text-danger"
                           onClick={()=> deleteFavorite(favorite)}
                           >
-                            <i class="fa-solid fa-square-xmark"></i>
+                            <i className="fa-solid fa-square-xmark"></i>
                           </button>
                         </li>
                       </div>
