@@ -29,6 +29,7 @@ export const Home = () => {
     }
     const data = await response.json();
     dispatch({ type: "set_people", payload: data.results });
+    console.log("people array fetched: ", data.results);
   };
 
   // const getPeopleMass = (personUID) => {
@@ -86,7 +87,7 @@ export const Home = () => {
   useEffect(() => {
     getPeople();
     // getAllPeopleMass();
-    getAllPeopleProperties();
+    // getAllPeopleProperties();
   }, []);
 
   // if (store.people.length == 0) {
@@ -95,8 +96,7 @@ export const Home = () => {
   return (
     <div className="text-center mt-5">
       <p className="bg-info">
-        <i className="fa-solid fa-wrench"></i> SWAPI.tech is taking WAAAAY too
-        long to load the character properties! Sorry for the wait!
+        <i className="fa-solid fa-wrench"></i> ...
       </p>
       <section>
         <h2 className="text-warning bg-dark text-start ms-5">Characters</h2>

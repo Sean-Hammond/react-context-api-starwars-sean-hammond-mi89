@@ -2,15 +2,15 @@ export const initialStore = () => {
   return {
     baseURL: "https://www.swapi.tech/api",
     people: [],
-    peopleMass: [],
-    peopleProperties: [],
+    // peopleMass: [],
+    // peopleProperties: [],
     favorites: [],
   };
 };
 
 export default function storeReducer(store, action = {}) {
   switch (action.type) {
-    case "set-people":
+    case "set_people":
       console.log("action: ", action.payload);
       return {
         ...store,
