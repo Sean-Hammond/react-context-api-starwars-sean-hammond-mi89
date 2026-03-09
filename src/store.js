@@ -2,8 +2,6 @@ export const initialStore = () => {
   return {
     baseURL: "https://www.swapi.tech/api",
     people: [],
-    // peopleMass: [],
-    // peopleProperties: [],
     favorites: [],
   };
 };
@@ -17,12 +15,6 @@ export default function storeReducer(store, action = {}) {
         people: action.payload,
       };
 
-    // case "set-peopleProperties":
-    //   return {
-    //     ...store,
-    //     peopleProperties: action.payload,
-    //   };
-
     case "set-favorites":
       return {
         ...store,
@@ -34,8 +26,6 @@ export default function storeReducer(store, action = {}) {
         ...store,
         favorites: action.payload,
       };
-
-    // case "test":
 
     default:
       throw Error("Unknown action.");
