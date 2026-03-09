@@ -35,7 +35,7 @@ export const Home = () => {
   return (
     <div className="text-center mt-5">
       <p className="bg-info">
-        <i className="fa-solid fa-wrench"></i> ...
+        <i className="fa-solid fa-wrench"></i> Website still under development
       </p>
       <section>
         <h2 className="text-warning bg-dark text-start ms-5">Characters</h2>

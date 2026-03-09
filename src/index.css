@@ -1,22 +1,26 @@
 img#site-logo {
-    width: 70px;
+    width: 4rem;
 }
 
 img.profile-image {
-    width: 300px;
+    width: 15rem;
 }
 
 .loading {
     color: red;
 }
 
+section {
+    padding: 0 10dvw;
+}
+
 div.col {
     border: 1px solid;
-    margin: 20px;
+    margin: 1.25rem;
 }
 
 .overflow-x-auto {
-    width: 2000px;
+    width: 225rem;
 }
 
 .invisibleButton {
