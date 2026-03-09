@@ -66,6 +66,7 @@ export const Navbar = () => {
                     return (
                       <div>
                         <li key={index}>
+                          {/* NOTE: CHANGE THIS KEY TO SOMETHING MORE UNIQUE */}
                           {favorite}
                           <button className="invisibleButton text-danger"
                           onClick={()=> deleteFavorite(favorite)}

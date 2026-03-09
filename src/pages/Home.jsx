@@ -92,6 +92,7 @@ export const Home = () => {
               return (
                 <div
                   key={index}
+                  // NOTE: CHANGE THIS KEY TO UID IF POSSIBLE
                   className="col"
                   onClick={() => addFavorite(person.name)}
                 >
