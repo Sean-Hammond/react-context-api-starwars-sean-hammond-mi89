@@ -44,8 +44,7 @@ export const Home = () => {
             store.people.map((person, index) => {
               return (
                 <div
-                  key={index}
-                  // NOTE: CHANGE THIS KEY TO ID OR UID IF POSSIBLE
+                  key={person.properties.id}
                   className="col"
                   onClick={() => addFavorite(person.properties.name)}
                 >
