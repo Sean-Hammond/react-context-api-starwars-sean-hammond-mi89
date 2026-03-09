@@ -15,7 +15,7 @@ export const Home = () => {
       return;
     }
     const data = await response.json();
-    dispatch({ type: "set_people", payload: data.results });
+    dispatch({ type: "set-people", payload: data.results });
     console.log("people array fetched: ", data.results);
   };
 

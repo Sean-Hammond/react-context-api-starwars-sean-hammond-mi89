@@ -8,7 +8,7 @@ export const initialStore = () => {
 
 export default function storeReducer(store, action = {}) {
   switch (action.type) {
-    case "set_people":
+    case "set-people":
       console.log("action: ", action.payload);
       return {
         ...store,
