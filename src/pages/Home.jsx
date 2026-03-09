@@ -4,61 +4,75 @@ import React, { useEffect, useState } from "react";
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
 
-  const getPeople = () => {
-    fetch(store.baseURL + "/people")
-      .then((allPeople) => {
-        return allPeople.json();
-      })
-      .then((data) => {
-        dispatch({
-          type: "set-people",
-          payload: data.results,
-        });
-      });
-  };
+  // const getPeopleOld = () => {
+  //   fetch(store.baseURL + "/people")
+  //     .then((allPeople) => {
+  //       return allPeople.json();
+  //     })
+  //     .then((data) => {
+  //       dispatch({
+  //         type: "set-people",
+  //         payload: data.results,
+  //       });
+  //     });
+  // };
 
-  const getPeopleMass = (personUID) => {
-    fetch(store.baseURL + "/people/" + personUID)
-      .then((personMass) => {
-        return personMass.json();
-      })
-      .then((data) => {
-        store.peopleMass[personUID - 1] = data.result.properties.mass;
-      });
-  };
-
-  const getAllPeopleMass = () => {
-    for (let i = 0; i < store.people.length; i++) {
-      getPeopleMass(i + 1);
+  const getPeople = async () => {
+    const response = await fetch(store.baseURL + "/people/?expanded=true");
+    if (!response.ok) {
+      console.log(
+        "getPeople response not ok: ",
+        response.status,
+        response.statusText,
+      );
+      return;
     }
+    const data = await response.json();
+    dispatch({ type: "set_people", payload: data.results });
   };
 
-  const getPeopleProperties = (personUID) => {
-    fetch(store.baseURL + "/people/" + personUID)
-      .then((personProperty) => {
-        return personProperty.json();
-      })
-      .then((data) => {
-        // const newPersonProperties = [...store.PeopleProperties];
-        // newPersonProperties[personUID - 1] = data.result.properties;
-        dispatch({
-          type: "set-peopleProperties",
-          // payload: newPersonProperties,
-          // payload: data.result.properties,
-          payload: Object.assign([], store.peopleProperties, {
-            [personUID - 1]: data.result.properties,
-          }),
-          // I don't entirely understand Object.assign. I found it online, I think as an attempt to solve the never-ending load time for the people properties. I do understand what the dispatch is doing and I commented out the code parts I had in there before.
-        });
-      });
-  };
+  // const getPeopleMass = (personUID) => {
+  //   fetch(store.baseURL + "/people/" + personUID)
+  //     .then((personMass) => {
+  //       return personMass.json();
+  //     })
+  //     .then((data) => {
+  //       store.peopleMass[personUID - 1] = data.result.properties.mass;
+  //     });
+  // };
 
-  const getAllPeopleProperties = async () => {
-    for (let i = 0; i < store.people.length; i++) {
-      getPeopleProperties(i + 1);
-      await new Promise(resolve => setTimeout(resolve, 500)); // Delay to limit SWAPI.tech's rate slowing -- apparently not working!
-    }
-  };
+  // const getAllPeopleMass = () => {
+  //   for (let i = 0; i < store.people.length; i++) {
+  //     getPeopleMass(i + 1);
+  //   }
+  // };
+
+  // const getPeopleProperties = (personUID) => {
+  //   fetch(store.baseURL + "/people/" + personUID)
+  //     .then((personProperty) => {
+  //       return personProperty.json();
+  //     })
+  //     .then((data) => {
+  //       // const newPersonProperties = [...store.PeopleProperties];
+  //       // newPersonProperties[personUID - 1] = data.result.properties;
+  //       dispatch({
+  //         type: "set-peopleProperties",
+  //         // payload: newPersonProperties,
+  //         // payload: data.result.properties,
+  //         payload: Object.assign([], store.peopleProperties, {
+  //           [personUID - 1]: data.result.properties,
+  //         }),
+  //         // I don't entirely understand Object.assign. I found it online, I think as an attempt to solve the never-ending load time for the people properties. I do understand what the dispatch is doing and I commented out the code parts I had in there before.
+  //       });
+  //     });
+  // };
+
+  // const getAllPeopleProperties = async () => {
+  //   for (let i = 0; i < store.people.length; i++) {
+  //     getPeopleProperties(i + 1);
+  //     await new Promise((resolve) => setTimeout(resolve, 500)); // Delay to limit SWAPI.tech's rate slowing -- apparently not working!
+  //   }
+  // };
 
   const addFavorite = (nameOfFavorite) => {
     !store.favorites.includes(nameOfFavorite) &&
@@ -94,17 +108,17 @@ export const Home = () => {
                   key={index}
                   // NOTE: CHANGE THIS KEY TO UID IF POSSIBLE
                   className="col"
-                  onClick={() => addFavorite(person.name)}
+                  onClick={() => addFavorite(person.properties.name)}
                 >
-                  <img
+                  {/* <img
                     src={
                       "https://upload.wikimedia.org/wikipedia/commons/c/ce/Star_wars2.svg"
                     }
                     alt=""
                     className="profile-image"
-                  />
-                  <h3>{person.name}</h3>
-                  <ul>
+                  /> */}
+                  <h3>{person.properties.name}</h3>
+                  {/* <ul>
                     <li className="text-start">
                       Mass:{" "}
                       {store.peopleMass.length > 0 ? (
@@ -113,7 +127,8 @@ export const Home = () => {
                         <span className="loading bg-info-subtle">
                           Loading...
                         </span>
-                      )}{" kg"}
+                      )}
+                      {" kg"}
                     </li>
                     <li className="text-start">
                       Height:{" "}
@@ -136,7 +151,7 @@ export const Home = () => {
                         </span>
                       )}
                     </li>
-                  </ul>
+                  </ul> */}
                 </div>
               );
             })

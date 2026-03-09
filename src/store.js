@@ -17,11 +17,11 @@ export default function storeReducer(store, action = {}) {
         people: action.payload,
       };
 
-    case "set-peopleProperties":
-      return {
-        ...store,
-        peopleProperties: action.payload,
-      };
+    // case "set-peopleProperties":
+    //   return {
+    //     ...store,
+    //     peopleProperties: action.payload,
+    //   };
 
     case "set-favorites":
       return {
@@ -35,7 +35,7 @@ export default function storeReducer(store, action = {}) {
         favorites: action.payload,
       };
 
-    case "test":
+    // case "test":
 
     default:
       throw Error("Unknown action.");
