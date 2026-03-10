@@ -28,6 +28,16 @@ export const Home = () => {
     console.log("Favorites array: ", store.favorites);
   };
 
+  const deleteFavorite = (nameOfFavorite) => {
+    const filteredFavorites = store.favorites.filter((favoriteToCheck)=>{
+      return favoriteToCheck != nameOfFavorite;
+    });
+    dispatch({
+      type: "set-filteredFavorites",
+      payload: filteredFavorites,
+    });
+  };
+
   useEffect(() => {
     getPeople();
   }, []);
@@ -43,11 +53,7 @@ export const Home = () => {
           {store.people.length > 0 ? (
             store.people.map((person, index) => {
               return (
-                <div
-                  key={person.properties.id}
-                  className="col"
-                  onClick={() => addFavorite(person.properties.name)}
-                >
+                <div key={person.properties.id} className="col">
                   <img
                     src={
                       "https://github.com/breatheco-de/swapi-images/blob/master/public/images/people/" +
@@ -92,6 +98,13 @@ export const Home = () => {
                       )}
                     </li>
                   </ul>
+                  <button className="btn btn-primary">Info</button>
+                  <button
+                    onClick={() => store.favorites.includes(person.properties.name) ? deleteFavorite(person.properties.name) : addFavorite(person.properties.name)}
+                    className="btn btn-warning"
+                  >
+                    {store.favorites.includes(person.properties.name) ? <i className="fa-solid fa-star"></i> : <i className="fa-regular fa-star"></i>}
+                  </button>
                 </div>
               );
             })
