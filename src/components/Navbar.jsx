@@ -5,7 +5,7 @@ export const Navbar = () => {
   const { store, dispatch } = useGlobalReducer();
 
   const deleteFavorite = (nameOfFavorite) => {
-    const filteredFavorites = store.favorites.filter((favoriteToCheck)=>{
+    const filteredFavorites = store.favorites.filter((favoriteToCheck) => {
       return favoriteToCheck != nameOfFavorite;
     });
     dispatch({
@@ -30,6 +30,30 @@ export const Navbar = () => {
         <span>
           <h1 className="text-decoration-none">Star Wars Database</h1>
         </span>
+
+        <div className="dropdown ml-auto">
+          <button
+            className="btn btn-primary dropdown-toggle"
+            type="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Favorites
+          </button>
+          <ul className="dropdown-menu">
+            <li>
+              <a className="dropdown-item" href="#">
+                Characters:
+              </a>
+            </li>
+            <li>
+              <a className="dropdown-item" href="#">
+                Something else here
+              </a>
+            </li>
+          </ul>
+        </div>
+
         <div className="ml-auto">
           <button
             className="btn btn-primary"
@@ -68,8 +92,9 @@ export const Navbar = () => {
                         <li key={index}>
                           {/* NOTE: CHANGE THIS KEY TO SOMETHING MORE UNIQUE */}
                           {favorite}
-                          <button className="invisibleButton text-danger"
-                          onClick={()=> deleteFavorite(favorite)}
+                          <button
+                            className="invisibleButton text-danger"
+                            onClick={() => deleteFavorite(favorite)}
                           >
                             <i className="fa-solid fa-square-xmark"></i>
                           </button>
