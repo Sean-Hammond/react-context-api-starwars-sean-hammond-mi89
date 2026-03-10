@@ -41,15 +41,26 @@ export const Navbar = () => {
             Favorites
           </button>
           <ul className="dropdown-menu">
+            <li>Characters:</li>
             <li>
-              <a className="dropdown-item" href="#">
-                Characters:
-              </a>
-            </li>
-            <li>
-              <a className="dropdown-item" href="#">
-                Something else here
-              </a>
+              <ul>
+                {store.favorites.map((favorite, index) => {
+                  return (
+                    <div>
+                      <li key={index}>
+                        {/* NOTE: CHANGE THIS KEY TO SOMETHING MORE UNIQUE */}
+                        {favorite}
+                        <button
+                          className="invisibleButton text-danger"
+                          onClick={() => deleteFavorite(favorite)}
+                        >
+                          <i className="fa-solid fa-square-xmark"></i>
+                        </button>
+                      </li>
+                    </div>
+                  );
+                })}
+              </ul>
             </li>
           </ul>
         </div>
