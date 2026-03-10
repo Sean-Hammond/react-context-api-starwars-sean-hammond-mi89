@@ -1,5 +1,6 @@
 import useGlobalReducer from "../hooks/useGlobalReducer.jsx";
 import React, { useEffect, useState } from "react";
+import { Card } from "../components/Card.jsx";
 
 export const Home = () => {
   const { store, dispatch } = useGlobalReducer();
@@ -29,7 +30,7 @@ export const Home = () => {
   };
 
   const deleteFavorite = (nameOfFavorite) => {
-    const filteredFavorites = store.favorites.filter((favoriteToCheck)=>{
+    const filteredFavorites = store.favorites.filter((favoriteToCheck) => {
       return favoriteToCheck != nameOfFavorite;
     });
     dispatch({
@@ -52,61 +53,7 @@ export const Home = () => {
         <div className="row flex-nowrap overflow-auto">
           {store.people.length > 0 ? (
             store.people.map((person, index) => {
-              return (
-                <div key={person.properties.id} className="col">
-                  <img
-                    src={
-                      "https://github.com/breatheco-de/swapi-images/blob/master/public/images/people/" +
-                      (index + 1) +
-                      ".jpg?raw=true"
-                    }
-                    alt=""
-                    className="profile-image"
-                  />
-                  <h3>{person.properties.name}</h3>
-                  <ul>
-                    <li className="text-start">
-                      Mass:{" "}
-                      {store.people.length > 0 ? (
-                        store.people[index].properties.mass
-                      ) : (
-                        <span className="loading bg-info-subtle">
-                          Loading...
-                        </span>
-                      )}
-                      {" kg"}
-                    </li>
-                    <li className="text-start">
-                      Height:{" "}
-                      {store.people[index] ? (
-                        store.people[index].properties.height
-                      ) : (
-                        <span className="loading bg-info-subtle">
-                          Loading...
-                        </span>
-                      )}
-                      {" cm"}
-                    </li>
-                    <li className="text-start">
-                      Born:{" "}
-                      {store.people[index] ? (
-                        store.people[index].properties.birth_year
-                      ) : (
-                        <span className="loading bg-info-subtle">
-                          Loading...
-                        </span>
-                      )}
-                    </li>
-                  </ul>
-                  <button className="btn btn-primary">Info</button>
-                  <button
-                    onClick={() => store.favorites.includes(person.properties.name) ? deleteFavorite(person.properties.name) : addFavorite(person.properties.name)}
-                    className="btn btn-warning"
-                  >
-                    {store.favorites.includes(person.properties.name) ? <i className="fa-solid fa-star"></i> : <i className="fa-regular fa-star"></i>}
-                  </button>
-                </div>
-              );
+              return <Card  person={person} index={index} addFavorite={addFavorite} deleteFavorite={deleteFavorite} key={person.properties.id} />;
             })
           ) : (
             <h2 className="loading bg-info-subtle ms-5">Loading...</h2>
