@@ -4,6 +4,8 @@ img#site-logo {
 
 img.profile-image {
     width: 15rem;
+    min-width: 1px;
+    /* Min width set to prevent images from randomly disappearing during development */
 }
 
 .loading {
