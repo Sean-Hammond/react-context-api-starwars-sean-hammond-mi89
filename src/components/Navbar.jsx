@@ -39,7 +39,7 @@ export const Navbar = () => {
             data-bs-auto-close="false"
             aria-expanded="false"
           >
-            Favorites
+            Favorites <strong>({store.favorites.length})</strong>
           </button>
           <ul className="dropdown-menu">
             <li>Characters:</li>
