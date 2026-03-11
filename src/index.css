@@ -4,7 +4,7 @@ img#site-logo {
 
 img.profile-image {
     width: 15rem;
-    min-width: 1px;
+    min-width: 15rem;
     /* Min width set to prevent images from randomly disappearing during development */
 }
 
