@@ -36,6 +36,7 @@ export const Navbar = () => {
             className="btn btn-primary dropdown-toggle"
             type="button"
             data-bs-toggle="dropdown"
+            data-bs-auto-close="false"
             aria-expanded="false"
           >
             Favorites
@@ -63,70 +64,6 @@ export const Navbar = () => {
               </ul>
             </li>
           </ul>
-        </div>
-
-        <div className="ml-auto">
-          <button
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#favoritesModal"
-          >
-            Favorites
-          </button>
-
-          {/* Modal */}
-          <div
-            className="modal fade"
-            id="favoritesModal"
-            tabIndex="-1"
-            aria-labelledby="favoritesModalLabel"
-            aria-hidden="true"
-          >
-            <div className="modal-dialog">
-              <div className="modal-content">
-                <div className="modal-header">
-                  <h1 className="modal-title fs-5" id="favoritesModalLabel">
-                    My Favorite Star Wars...
-                  </h1>
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  ></button>
-                </div>
-                <div className="modal-body">Characters:</div>
-                <ul>
-                  {store.favorites.map((favorite, index) => {
-                    return (
-                      <div>
-                        <li key={index}>
-                          {/* NOTE: CHANGE THIS KEY TO SOMETHING MORE UNIQUE */}
-                          {favorite}
-                          <button
-                            className="invisibleButton text-danger"
-                            onClick={() => deleteFavorite(favorite)}
-                          >
-                            <i className="fa-solid fa-square-xmark"></i>
-                          </button>
-                        </li>
-                      </div>
-                    );
-                  })}
-                </ul>
-                <div className="modal-footer">
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                    data-bs-dismiss="modal"
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          {/* End of modal */}
         </div>
       </div>
     </nav>
