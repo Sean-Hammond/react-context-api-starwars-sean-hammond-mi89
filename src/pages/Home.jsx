@@ -20,6 +20,21 @@ export const Home = () => {
     console.log("people array fetched: ", data.results);
   };
 
+  // const getPlanets = async () => {
+  //   const response = await fetch(store.baseURL + "/planets/?expanded=true");
+  //   if (!response.ok) {
+  //     console.log(
+  //       "getPlanets response not ok: ",
+  //       response.status,
+  //       response.statusText,
+  //     );
+  //     return;
+  //   }
+  //   const data = await response.json();
+  //   dispatch({ type: "set-planets", payload: data.results });
+  //   console.log("planets array fetched: ", data.results);
+  // };
+
   const addFavorite = (nameOfFavorite) => {
     !store.favorites.includes(nameOfFavorite) &&
       dispatch({
@@ -59,6 +74,15 @@ export const Home = () => {
             <h2 className="loading bg-info-subtle ms-5">Loading...</h2>
           )}
         </div>
+        {/* <div className="row flex-nowrap overflow-auto">
+          {store.planets.length > 0 ? (
+            store.planets.map((planet, index) => {
+              return <Card  person={planet} index={index} addFavorite={addFavorite} deleteFavorite={deleteFavorite} key={planet.properties.id} />;
+            })
+          ) : (
+            <h2 className="loading bg-info-subtle ms-5">Loading...</h2>
+          )}
+        </div> */}
       </section>
     </div>
   );
