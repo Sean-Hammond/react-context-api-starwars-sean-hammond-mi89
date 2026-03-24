@@ -3,7 +3,9 @@ export const initialStore = () => {
     baseURL: "https://www.swapi.tech/api",
     people: [],
     planets: [],
+    species: [],
     favorites: [],
+    cardTypes: ["people", "planets", "species"],
   };
 };
 
@@ -20,7 +22,14 @@ export default function storeReducer(store, action = {}) {
       console.log("action: ", action.payload);
       return {
         ...store,
-        people: action.payload,
+        planets: action.payload,
+      };
+
+    case "set-species":
+      console.log("action: ", action.payload);
+      return {
+        ...store,
+        planets: action.payload,
       };
 
     case "set-favorites":
