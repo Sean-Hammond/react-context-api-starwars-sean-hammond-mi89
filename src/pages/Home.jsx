@@ -35,21 +35,6 @@ export const Home = () => {
     console.log("planets array fetched: ", data.results);
   };
 
-  const getSpecies = async () => {
-    const response = await fetch(store.baseURL + "/species/?expanded=true");
-    if (!response.ok) {
-      console.log(
-        "getSpecies response not ok: ",
-        response.status,
-        response.statusText,
-      );
-      return;
-    }
-    const data = await response.json();
-    dispatch({ type: "set-species", payload: data.results });
-    console.log("species array fetched: ", data.results);
-  };
-
   const addFavorite = (nameOfFavorite) => {
     !store.favorites.includes(nameOfFavorite) &&
       dispatch({
@@ -72,13 +57,13 @@ export const Home = () => {
   useEffect(() => {
     getPeople();
     getPlanets();
-    getSpecies();
   }, []);
 
   return (
     <div className="text-center mt-5">
       <p className="bg-info">
-        <i className="fa-solid fa-wrench"></i> Website still under development
+        <i className="fa-solid fa-wrench"></i>Developer's note: It took a very
+        very long time for the third row to load, so I only kept 2.
       </p>
       <section>
         <h2 className="text-warning bg-dark text-start ms-5">Characters</h2>
@@ -86,7 +71,17 @@ export const Home = () => {
         <div className="row flex-nowrap overflow-auto">
           {store.people.length > 0 ? (
             store.people.map((person, index) => {
-              return <Card  cardType={"people"} card={person} index={index} addFavorite={addFavorite} deleteFavorite={deleteFavorite} urlExtension={"people"} key={person.properties.id} />;
+              return (
+                <Card
+                  cardType={"people"}
+                  card={person}
+                  index={index}
+                  addFavorite={addFavorite}
+                  deleteFavorite={deleteFavorite}
+                  urlExtension={"people"}
+                  key={person.properties.id}
+                />
+              );
             })
           ) : (
             <h2 className="loading bg-info-subtle ms-5">Loading...</h2>
@@ -97,18 +92,17 @@ export const Home = () => {
         <div className="row flex-nowrap overflow-auto">
           {store.planets.length > 0 ? (
             store.planets.map((planet, index) => {
-              return <Card  cardType={"planets"} card={planet} index={index} addFavorite={addFavorite} deleteFavorite={deleteFavorite} urlExtension={"planets"} key={planet.properties.id} />;
-            })
-          ) : (
-            <h2 className="loading bg-info-subtle ms-5">Loading...</h2>
-          )}
-        </div>
-        <h2 className="text-warning bg-dark text-start ms-5">Species</h2>
-        {/* Species cards: */}
-        <div className="row flex-nowrap overflow-auto">
-          {store.species.length > 0 ? (
-            store.species.map((individualSpecies, index) => {
-              return <Card  cardType={"species"} card={individualSpecies} index={index} addFavorite={addFavorite} deleteFavorite={deleteFavorite} urlExtension={"species"} key={individualSpecies.properties.id} />;
+              return (
+                <Card
+                  cardType={"planets"}
+                  card={planet}
+                  index={index}
+                  addFavorite={addFavorite}
+                  deleteFavorite={deleteFavorite}
+                  urlExtension={"planets"}
+                  key={planet.properties.id}
+                />
+              );
             })
           ) : (
             <h2 className="loading bg-info-subtle ms-5">Loading...</h2>

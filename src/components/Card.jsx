@@ -1,5 +1,7 @@
 import useGlobalReducer from "../hooks/useGlobalReducer";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Details } from "../pages/Details";
 
 export const Card = ({
   cardType,
@@ -24,7 +26,16 @@ export const Card = ({
         alt="image of what this card describes"
         className="profile-image"
       />
-      <h3>{card.properties.name}</h3>
+      <h3>
+        <Link
+          to={"/details/" + index}
+          detailsEntry={card}
+          urlExtension={urlExtension}
+          cardType={cardType}
+        >
+          {card.properties.name}
+        </Link>
+      </h3>
       {cardType === "people" && (
         <ul>
           <li className="text-start">
@@ -71,34 +82,6 @@ export const Card = ({
               store.planets[index].properties.climate +
               " " +
               store.planets[index].properties.terrain
-            ) : (
-              <span className="loading bg-info-subtle">Loading...</span>
-            )}
-          </li>
-        </ul>
-      )}
-      {cardType === "species" && (
-        <ul>
-          <li className="text-start">
-            Avg. Lifespan:{" "}
-            {store.species[index] ? (
-              store.species[index].properties.average_lifespan
-            ) : (
-              <span className="loading bg-info-subtle">Loading...</span>
-            )}
-          </li>
-          <li className="text-start">
-            Classification:{" "}
-            {store.species[index] ? (
-              store.species[index].properties.classification
-            ) : (
-              <span className="loading bg-info-subtle">Loading...</span>
-            )}
-          </li>
-          <li className="text-start">
-            Designation:{" "}
-            {store.species[index] ? (
-              store.species[index].properties.designation
             ) : (
               <span className="loading bg-info-subtle">Loading...</span>
             )}

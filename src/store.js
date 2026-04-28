@@ -1,11 +1,12 @@
 export const initialStore = () => {
   return {
+    // URL example: https://www.swapi.tech/api/people/?expanded=true
     baseURL: "https://www.swapi.tech/api",
+    extensionURL: "?expanded=true",
     people: [],
     planets: [],
-    species: [],
     favorites: [],
-    cardTypes: ["people", "planets", "species"],
+    cardTypes: ["people", "planets"],
   };
 };
 
@@ -19,13 +20,6 @@ export default function storeReducer(store, action = {}) {
       };
 
     case "set-planets":
-      console.log("action: ", action.payload);
-      return {
-        ...store,
-        planets: action.payload,
-      };
-
-    case "set-species":
       console.log("action: ", action.payload);
       return {
         ...store,
